@@ -7,7 +7,7 @@ import { notFound } from 'next/navigation';
 export async function generateMetadata({ params }: { params: Promise<{ height: string }> }): Promise<Metadata> {
   const p = await params;
   return {
-    title: `Block #${p.height} | QuantaScan Explorer`,
+    title: `Block #${p.height} | QuaScan Explorer`,
     description: `Details for block #${p.height} on the Quanta network.`,
   };
 }

@@ -4,7 +4,7 @@ import { Box, Clock, ChevronLeft, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Blocks | QuantaScan Explorer',
+  title: 'Blocks | QuaScan Explorer',
   description: 'View all blocks on the Quanta network.',
 };
 

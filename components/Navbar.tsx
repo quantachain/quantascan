@@ -7,8 +7,8 @@ import { useState, useEffect } from "react";
 import SearchBar from "./SearchBar";
 
 const navLinks = [
-  { name: "Dashboard", href: "/", icon: Activity },
-  { name: "Blocks", href: "/blocks", icon: Box },
+  { name: "Dashboard", href: "/" },
+  { name: "Blocks", href: "/blocks" },
 ];
 
 export default function Navbar() {
@@ -35,14 +35,14 @@ export default function Navbar() {
             <Link href="/" className="flex items-center gap-2 flex-shrink-0 group">
               <Image
                 src="/logo/quanta-transparent-bg-logo.svg"
-                alt="Quanta Scan Logo"
+                alt="QuaScan Logo"
                 width={32}
                 height={32}
                 className="w-8 h-8 transition-transform group-hover:scale-110"
                 priority
               />
               <span className="text-2xl font-black tracking-tight text-gray-900">
-                Quanta<span className="text-[#00E599]">Scan</span>
+                Qua<span className="text-[#00E599]">Scan</span>
               </span>
             </Link>
 
@@ -53,7 +53,6 @@ export default function Navbar() {
                   href={link.href}
                   className="text-sm font-bold text-gray-600 hover:text-black transition-colors flex items-center gap-1.5"
                 >
-                  <link.icon className="w-4 h-4 text-gray-400" />
                   {link.name}
                 </Link>
               ))}
@@ -111,7 +110,6 @@ export default function Navbar() {
                   className="flex items-center gap-3 py-3 text-gray-600 hover:text-black font-bold transition-colors"
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  <link.icon className="w-5 h-5 text-gray-400" />
                   {link.name}
                 </Link>
               ))}

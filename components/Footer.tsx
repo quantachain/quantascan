@@ -16,7 +16,7 @@ export default function Footer() {
                 className="w-12 h-12 transition-transform group-hover:scale-110"
               />
               <span className="text-3xl font-bold tracking-tighter">
-                Quanta<span className="text-[#00E599]">Scan</span>
+                Qua<span className="text-[#00E599]">Scan</span>
               </span>
             </Link>
             <p className="text-gray-500 max-w-sm text-base leading-relaxed mb-6">

@@ -11,7 +11,7 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "QuantaScan | Quantum-Resistant Blockchain Explorer",
+  title: "QuaScan | Quantum-Resistant Blockchain Explorer",
   description: "Real-time blockchain explorer for the quantum-resistant Quanta network. View blocks, transactions, mempool, and network statistics.",
 };
 

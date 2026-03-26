@@ -4,7 +4,7 @@ import { Activity, Box, Pickaxe, Coins, Clock, Database, ArrowRight } from 'luci
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'QuantaScan | Quantum-Resistant Blockchain Explorer',
+  title: 'QuaScan | Quantum-Resistant Blockchain Explorer',
   description: 'Real-time blockchain explorer for the Quanta network.',
 };
 
@@ -27,23 +27,14 @@ export default async function Home() {
   return (
     <div className="bg-[#f9fafb] min-h-screen pb-12">
       
-      {/* Top Title & Network Status Banner */}
-      <div className="bg-white border-b border-gray-200 pt-6 pb-6">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div>
-            <h1 className="text-2xl font-black text-gray-900 tracking-tight flex items-center gap-2">
-              <Database className="w-6 h-6 text-[#00E599]" />
-              Network Overview
-            </h1>
-            <p className="text-sm text-gray-500 mt-1 font-medium">Real-time statistics for the Quanta Mainnet.</p>
-          </div>
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50 border border-emerald-100 self-start md:self-auto">
-            <span className="relative flex h-2.5 w-2.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00E599] opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#00E599]"></span>
-            </span>
-            <span className="text-xs font-bold text-emerald-700 uppercase tracking-widest">Mainnet Live</span>
-          </div>
+      {/* Network Status Banner */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 flex justify-end">
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50 border border-emerald-100">
+          <span className="relative flex h-2.5 w-2.5">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00E599] opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#00E599]"></span>
+          </span>
+          <span className="text-xs font-bold text-emerald-700 uppercase tracking-widest">Testnet</span>
         </div>
       </div>
 
