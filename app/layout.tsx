@@ -22,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${manrope.variable} antialiased min-h-screen flex flex-col bg-[#f9fafb] text-gray-900 font-sans`}>
+      <body className={`${manrope.variable} antialiased min-h-screen flex flex-col bg-[#0b0e14] text-[#e2e8f0] font-sans`}>
         <Navbar />
         <main className="flex-grow pt-20">
           {children}

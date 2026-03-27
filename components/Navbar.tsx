@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Github, Menu, X, Activity, Box, BookOpen, Send } from "lucide-react";
+import { Github, Menu, X, BookOpen } from "lucide-react";
 import { useState, useEffect } from "react";
 import SearchBar from "./SearchBar";
 
@@ -25,23 +25,15 @@ export default function Navbar() {
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${scrolled
-      ? "bg-white border-b border-gray-200"
-      : "bg-white border-b border-gray-100"
+      ? "bg-[#0b0e14]/90 backdrop-blur-md border-b border-[#1f2937]"
+      : "bg-[#0b0e14] border-b border-[#111827]"
       }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[72px]">
         <div className="flex items-center justify-between h-full gap-8">
           {/* Logo & Core Links */}
           <div className="flex items-center gap-8">
             <Link href="/" className="flex items-center gap-2 flex-shrink-0 group">
-              <Image
-                src="/logo/quanta-transparent-bg-logo.svg"
-                alt="QuaScan Logo"
-                width={32}
-                height={32}
-                className="w-8 h-8 transition-transform group-hover:scale-110"
-                priority
-              />
-              <span className="text-2xl font-black tracking-tight text-gray-900">
+              <span className="text-2xl font-black tracking-tight text-[#e2e8f0]">
                 Qua<span className="text-[#00E599]">Scan</span>
               </span>
             </Link>
@@ -51,7 +43,7 @@ export default function Navbar() {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className="text-sm font-bold text-gray-600 hover:text-black transition-colors flex items-center gap-1.5"
+                  className="text-sm font-bold text-gray-400 hover:text-[#00E599] transition-colors flex items-center gap-1.5"
                 >
                   {link.name}
                 </Link>
@@ -65,11 +57,11 @@ export default function Navbar() {
               <SearchBar />
             </div>
             
-            <div className="flex items-center gap-4 border-l border-gray-200 pl-6">
+            <div className="flex items-center gap-4 border-l border-[#1f2937] pl-6">
                <Link
                 href="https://quantachain.gitbook.io/quantachain-docs"
                 target="_blank"
-                className="text-gray-400 hover:text-gray-900 transition-colors"
+                className="text-gray-400 hover:text-[#00E599] transition-colors"
                 title="API Docs"
               >
                 <BookOpen className="w-5 h-5" />
@@ -77,7 +69,7 @@ export default function Navbar() {
               <Link
                 href="https://github.com/quantachain/quanta"
                 target="_blank"
-                className="text-gray-400 hover:text-gray-900 transition-colors"
+                className="text-gray-400 hover:text-[#00E599] transition-colors"
                 title="GitHub"
               >
                 <Github className="w-5 h-5" />
@@ -88,7 +80,7 @@ export default function Navbar() {
           {/* Mobile Menu Toggle */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden w-10 h-10 flex items-center justify-end text-gray-600 hover:text-black transition-colors"
+            className="lg:hidden w-10 h-10 flex items-center justify-end text-gray-400 hover:text-[#e2e8f0] transition-colors"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -97,9 +89,9 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden border-t border-gray-100 bg-white shadow-xl absolute w-full left-0 top-[72px]">
+        <div className="lg:hidden border-t border-[#1f2937] bg-[#0b0e14] shadow-2xl absolute w-full left-0 top-[72px]">
           <div className="px-4 py-4 sm:px-6 flex flex-col gap-4">
-            <div className="pb-4 border-b border-gray-100">
+            <div className="pb-4 border-b border-[#1f2937]">
               <SearchBar />
             </div>
             <div className="flex flex-col gap-2">
@@ -107,18 +99,18 @@ export default function Navbar() {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className="flex items-center gap-3 py-3 text-gray-600 hover:text-black font-bold transition-colors"
+                  className="flex items-center gap-3 py-3 text-gray-400 hover:text-[#00E599] font-bold transition-colors"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {link.name}
                 </Link>
               ))}
             </div>
-            <div className="pt-4 border-t border-gray-100 flex items-center gap-6">
-              <Link href="https://quantachain.gitbook.io/quantachain-docs" className="text-gray-500 flex items-center gap-2 text-sm font-bold">
+            <div className="pt-4 border-t border-[#1f2937] flex items-center gap-6">
+              <Link href="https://quantachain.gitbook.io/quantachain-docs" className="text-gray-400 hover:text-[#00E599] flex items-center gap-2 text-sm font-bold transition-colors">
                 <BookOpen className="w-4 h-4" /> API Docs
               </Link>
-              <Link href="https://github.com/quantachain/quanta" className="text-gray-500 flex items-center gap-2 text-sm font-bold">
+              <Link href="https://github.com/quantachain/quanta" className="text-gray-400 hover:text-[#00E599] flex items-center gap-2 text-sm font-bold transition-colors">
                 <Github className="w-4 h-4" /> GitHub
               </Link>
             </div>

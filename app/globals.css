@@ -1,17 +1,17 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: #f9fafb;
-  --color-foreground: #111827;
+  --color-background: #0b0e14;
+  --color-foreground: #e2e8f0;
   --color-primary: #00E599;
-  --color-primary-foreground: #ffffff;
-  --color-border: #e5e7eb;
+  --color-primary-foreground: #000000;
+  --color-border: #1f2937;
   --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
 }
 
 :root {
-  --background: #f9fafb;
-  --foreground: #111827;
+  --background: #0b0e14;
+  --foreground: #e2e8f0;
 }
 
 html {
@@ -25,12 +25,12 @@ body {
   font-family: var(--font-sans);
 }
 
-/* Solscan-style Card */
-.sol-card {
-  background-color: #ffffff;
-  border: 1px solid var(--color-border);
-  border-radius: 0.75rem;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+/* Dark Hacker Card Style */
+.dark-card {
+  background-color: #111827;
+  border: 1px solid #1f2937;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
 }
 
 .text-balance {

@@ -1,64 +1,70 @@
-import Link from "next/link";
-import Image from "next/image";
+import Link from 'next/link';
+import { Github, Twitter, MessageSquare, Shield, Globe } from 'lucide-react';
 
 export default function Footer() {
+  const currentYear = new Date().getFullYear();
+
   return (
-    <footer className="py-16 sm:py-24 border-t border-gray-100 bg-transparent text-black">
-      <div className="container mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 mb-16">
-          <div className="lg:col-span-4">
-            <Link href="/" className="flex items-center gap-3 mb-6 group">
-              <Image
-                src="/logo/quanta-transparent-bg-logo.svg"
-                alt="Quanta Scan Logo"
-                width={48}
-                height={48}
-                className="w-12 h-12 transition-transform group-hover:scale-110"
-              />
-              <span className="text-3xl font-bold tracking-tighter">
+    <footer className="bg-[#0b0e14] border-t border-[#1f2937] pt-16 pb-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8 mb-12">
+          
+          <div className="col-span-1 md:col-span-2">
+            <Link href="/" className="flex items-center gap-2 mb-4 group">
+              <span className="text-2xl font-black tracking-tight text-[#e2e8f0]">
                 Qua<span className="text-[#00E599]">Scan</span>
               </span>
             </Link>
-            <p className="text-gray-500 max-w-sm text-base leading-relaxed mb-6">
+            <p className="text-gray-400 text-sm leading-relaxed max-w-sm mb-6">
               The official block explorer for Quanta Chain. Track blocks, transactions, and network metrics in real-time.
             </p>
-          </div>
-
-          <div className="lg:col-span-8 grid grid-cols-2 md:grid-cols-3 gap-8">
-            <div>
-              <h4 className="font-bold mb-6 text-sm uppercase tracking-wider text-gray-900">Explorer</h4>
-              <ul className="space-y-3 text-sm text-gray-600">
-                <li><Link href="/" className="hover:text-[#00E599] transition-colors">Dashboard</Link></li>
-                <li><Link href="/blocks" className="hover:text-[#00E599] transition-colors">Latest Blocks</Link></li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="font-bold mb-6 text-sm uppercase tracking-wider text-gray-900">Network</h4>
-              <ul className="space-y-3 text-sm text-gray-600">
-                <li><Link href="https://rpc.quantachain.org/health" target="_blank" className="hover:text-[#00E599] transition-colors">RPC Health</Link></li>
-                <li><Link href="https://quantachain.org/faucet" target="_blank" className="hover:text-[#00E599] transition-colors">Faucet</Link></li>
-                <li>
-                  <span className="flex items-center gap-2 cursor-not-allowed">
-                    Nodes <span className="text-[10px] bg-gray-100 text-gray-500 px-2 py-0.5 rounded-full font-semibold">Soon</span>
-                  </span>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="font-bold mb-6 text-sm uppercase tracking-wider text-gray-900">Resources</h4>
-              <ul className="space-y-3 text-sm text-gray-600">
-                <li><Link href="https://quantachain.org" target="_blank" className="hover:text-[#00E599] transition-colors">Main Website</Link></li>
-                <li><Link href="https://github.com/quantachain/quanta" target="_blank" className="hover:text-[#00E599] transition-colors">GitHub</Link></li>
-                <li><Link href="https://quantachain.gitbook.io/quantachain-docs" target="_blank" className="hover:text-[#00E599] transition-colors">Documentation</Link></li>
-              </ul>
+            <div className="flex items-center gap-4">
+              <a href="#" className="w-10 h-10 rounded-full bg-[#111827] flex items-center justify-center text-gray-400 hover:text-[#00E599] hover:bg-[#1f2937] transition-colors">
+                <Twitter className="w-5 h-5" />
+              </a>
+              <a href="#" className="w-10 h-10 rounded-full bg-[#111827] flex items-center justify-center text-gray-400 hover:text-[#00E599] hover:bg-[#1f2937] transition-colors">
+                <MessageSquare className="w-5 h-5" />
+              </a>
+              <a href="https://github.com/quantachain/quanta" className="w-10 h-10 rounded-full bg-[#111827] flex items-center justify-center text-gray-400 hover:text-[#00E599] hover:bg-[#1f2937] transition-colors">
+                <Github className="w-5 h-5" />
+              </a>
             </div>
           </div>
+
+          <div>
+            <h3 className="font-bold text-[#e2e8f0] mb-4">Resources</h3>
+            <ul className="space-y-3">
+              <li><Link href="https://quantachain.gitbook.io/quantachain-docs" className="text-sm text-gray-400 hover:text-[#00E599] transition-colors">Developer Docs</Link></li>
+              <li><Link href="https://github.com/quantachain/quanta" className="text-sm text-gray-400 hover:text-[#00E599] transition-colors">Node Software</Link></li>
+              <li><Link href="#" className="text-sm text-gray-400 hover:text-[#00E599] transition-colors">Wallet Extension</Link></li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="font-bold text-[#e2e8f0] mb-4">Network</h3>
+            <ul className="space-y-3">
+              <li className="flex items-center gap-2 text-sm text-gray-400">
+                <Globe className="w-4 h-4 text-[#00E599]" /> Mainnet
+              </li>
+              <li className="flex items-center gap-2 text-sm text-gray-400">
+                <Shield className="w-4 h-4 text-[#00E599]" /> Proof of Work
+              </li>
+              <li className="flex items-center gap-2 text-sm text-gray-400">
+                <div className="w-2 h-2 rounded-full bg-[#00E599]"></div> Active
+              </li>
+            </ul>
+          </div>
+
         </div>
 
-        <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-gray-100 text-sm text-gray-500 gap-4">
-          <p className="font-mono text-xs">© {new Date().getFullYear()} Quanta Chain. All rights reserved.</p>
+        <div className="pt-8 border-t border-[#1f2937] flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-gray-500 text-sm">
+            © {currentYear} QuantaChain. All rights reserved.
+          </p>
+          <div className="flex items-center gap-6 text-sm">
+            <Link href="#" className="text-gray-500 hover:text-gray-300">Privacy Policy</Link>
+            <Link href="#" className="text-gray-500 hover:text-gray-300">Terms of Service</Link>
+          </div>
         </div>
       </div>
     </footer>
