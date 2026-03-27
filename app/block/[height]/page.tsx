@@ -94,7 +94,7 @@ export default async function BlockDetailsPage({
                       <div className="col-span-2">
                         <p className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">From</p>
                         <Link href={`/address/${tx.sender}`} className="font-mono text-xs text-[#00E599] hover:text-emerald-500 break-all">
-                          {tx.sender === '0' ? 'System (Coinbase)' : tx.sender}
+                          {tx.sender === 'COINBASE' ? 'System (Coinbase)' : tx.sender}
                         </Link>
                       </div>
                       <div className="col-span-2">

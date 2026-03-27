@@ -18,7 +18,7 @@ export default function SearchBar() {
     } else if (cleanQuery.startsWith("0x") && cleanQuery.length === 42) {
       router.push(`/address/${cleanQuery}`);
     } else if (cleanQuery.length === 64) {
-      alert("Search by Hash is not supported on this node yet. Searching by Block Height or Address only.");
+      router.push(`/tx/${cleanQuery}`);
     } else {
       alert("Invalid search format.");
     }
@@ -34,7 +34,7 @@ export default function SearchBar() {
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search Block Height or Address..."
+          placeholder="Search Block Height, Address, or Tx Hash..."
           className="w-full py-2.5 pr-4 text-sm bg-transparent focus:outline-none placeholder:text-gray-400 text-gray-900"
         />
         <button

@@ -56,35 +56,95 @@ export async function fetchBlock(height: number): Promise<Block | null> {
 }
 
 export async function fetchLatestBlocks(count: number = 10): Promise<Block[]> {
-  const stats = await fetchStats();
-  if (!stats) return [];
-  
-  const currentHeight = stats.chain_length;
-  // If chain_length is 10, blocks are likely 0 to 9. Let's fetch from max(0, currentHeight - 1).
-  const start = Math.max(0, currentHeight - 1);
-  const end = Math.max(0, start - count + 1);
-
-  const promises = [];
-  for (let h = start; h >= end; h--) {
-    promises.push(fetchBlock(h));
+  try {
+    const res = await fetch(`${RPC_URL}/api/blocks/latest?count=${count}`, {
+      next: { revalidate: 10 },
+    });
+    if (!res.ok) return [];
+    const data = await res.json();
+    return data.blocks || [];
+  } catch (error) {
+    console.error("Failed to fetch latest blocks", error);
+    return [];
   }
-
-  const results = await Promise.all(promises);
-  return results.filter((b): b is Block => b !== null);
 }
 
-export async function fetchBalance(address: string): Promise<{ address: string, balance_microunits: number, nonce: number } | null> {
+export interface LockedBalance {
+  amount_microunits: number;
+  amount_qua: number;
+  unlock_height: number;
+}
+
+export interface AddressInfo {
+  address: string;
+  balance_microunits: number;
+  balance_qua: number;
+  total_balance_microunits: number;
+  total_balance_qua: number;
+  nonce: number;
+  locked_balances: LockedBalance[];
+}
+
+export async function fetchAddressInfo(address: string): Promise<AddressInfo | null> {
   try {
-    const res = await fetch(`${RPC_URL}/api/balance`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ address }),
+    const res = await fetch(`${RPC_URL}/api/address/${address}`, {
       next: { revalidate: 10 },
     });
     if (!res.ok) return null;
     return await res.json();
   } catch (error) {
-    console.error(`Failed to fetch balance for ${address}`, error);
+    console.error(`Failed to fetch address info for ${address}`, error);
     return null;
   }
 }
+
+export interface AddressTransaction {
+  tx_hash: string;
+  block_height: number;
+  block_time: number;
+  sender: string;
+  recipient: string;
+  amount_microunits: number;
+  fee_microunits: number;
+  tx_type: string;
+}
+
+export interface AddressTxsResponse {
+  address: string;
+  transaction_count: number;
+  transactions: AddressTransaction[];
+}
+
+export async function fetchAddressTransactions(address: string, maxBlocks: number = 10000): Promise<AddressTxsResponse | null> {
+  try {
+    const res = await fetch(`${RPC_URL}/api/address/${address}/txs?max_blocks=${maxBlocks}`, {
+      next: { revalidate: 10 },
+    });
+    if (!res.ok) return null;
+    return await res.json();
+  } catch (error) {
+    console.error(`Failed to fetch txs for ${address}`, error);
+    return null;
+  }
+}
+
+export interface TxDetailResponse {
+  tx_hash: string;
+  status: string;
+  transaction: Transaction;
+  block_height: number | null;
+}
+
+export async function fetchTx(hash: string): Promise<TxDetailResponse | null> {
+  try {
+    const res = await fetch(`${RPC_URL}/api/tx/${hash}`, {
+      next: { revalidate: 10 },
+    });
+    if (!res.ok) return null;
+    return await res.json();
+  } catch (error) {
+    console.error(`Failed to fetch tx ${hash}`, error);
+    return null;
+  }
+}
+
