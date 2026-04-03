@@ -32,9 +32,12 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-full gap-8">
           {/* Logo & Core Links */}
           <div className="flex items-center gap-8">
-            <Link href="/" className="flex items-center gap-2 flex-shrink-0 group">
+            <Link href="/" className="flex items-center flex-shrink-0 group">
               <span className="text-2xl font-black tracking-tight text-[#e2e8f0]">
                 Qua<span className="text-[#00E599]">Scan</span>
+              </span>
+              <span className="bg-[#00E599]/10 text-[#00E599] text-[9px] font-bold px-1.5 py-0.5 rounded uppercase tracking-wider ml-2 relative -top-3 border border-[#00E599]/20">
+                Beta
               </span>
             </Link>
 

@@ -12,7 +12,7 @@ export const revalidate = 10;
 export default async function Home() {
   const [stats, latestBlocks] = await Promise.all([
     fetchStats(),
-    fetchLatestBlocks(10) 
+    fetchLatestBlocks(50) 
   ]);
 
   return (

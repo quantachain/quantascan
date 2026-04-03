@@ -28,6 +28,18 @@ export default function DashboardClient({
   const [walletError, setWalletError] = useState("");
   const [isRefreshing, setIsRefreshing] = useState(false);
 
+  // Quanta target block time is 30 seconds
+  const hashrate = initialStats ? (initialStats.current_difficulty / 30) : 0;
+  const formattedHashrate = hashrate > 1000000 
+    ? `${(hashrate / 1000000).toLocaleString(undefined, { maximumFractionDigits: 2 })} MH/s` 
+    : hashrate > 1000
+    ? `${(hashrate / 1000).toLocaleString(undefined, { maximumFractionDigits: 2 })} kH/s`
+    : `${hashrate.toLocaleString(undefined, { maximumFractionDigits: 0 })} H/s`;
+
+  const uniqueMiners = new Set(
+    initialBlocks.map(block => block.transactions.find(tx => tx.sender === 'COINBASE')?.recipient).filter(Boolean)
+  ).size;
+
   // Avoid creating a dependency cycle by placing the auto-fetch inside useEffect directly or making handleCheckBalance useCallback. But doing it simpler:
   useEffect(() => {
     // Auto-fetch treasury balance on mount to show users how it looks
@@ -200,6 +212,14 @@ export default function DashboardClient({
                <span className="text-gray-200">{initialStats?.current_difficulty.toLocaleString() || 0}</span>
              </div>
              <div className="flex justify-between items-center py-2 text-sm font-mono border-b border-[#1f2937]/30">
+               <span className="text-gray-500">Network Hashrate</span>
+               <span className="text-[#00E599] font-bold">{formattedHashrate}</span>
+             </div>
+             <div className="flex justify-between items-center py-2 text-sm font-mono border-b border-[#1f2937]/30">
+               <span className="text-gray-500">Active Miners (Last {initialBlocks?.length || 0} Blks)</span>
+               <span className="text-gray-200">{uniqueMiners}</span>
+             </div>
+             <div className="flex justify-between items-center py-2 text-sm font-mono border-b border-[#1f2937]/30">
                <span className="text-gray-500">Block Reward</span>
                <span className="text-gray-200">{initialStats ? (initialStats.mining_reward / 1_000_000).toLocaleString() : 0} QUA</span>
              </div>
@@ -245,7 +265,7 @@ export default function DashboardClient({
               </tr>
             </thead>
             <tbody className="divide-y divide-[#1f2937]/50 bg-[#111827]">
-              {initialBlocks.map((block) => {
+              {initialBlocks.slice(0, 10).map((block) => {
                 const miner = block.transactions.find(tx => tx.sender === 'COINBASE')?.recipient || 'Unknown';
                 return (
                   <tr key={block.index} className="hover:bg-[#1a2235]/50 transition-colors">
