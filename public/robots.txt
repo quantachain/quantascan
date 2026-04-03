@@ -1,5 +1,4 @@
-# https://www.robotstxt.org/robotstxt.html
 User-agent: *
 Allow: /
 
-Sitemap: https://quantachain.org/sitemap.xml
+Sitemap: https://scan.quantachain.org/sitemap.xml

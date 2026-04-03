@@ -2,10 +2,7 @@ import { Metadata } from 'next';
 import { fetchStats, fetchLatestBlocks } from '@/lib/api';
 import DashboardClient from '@/components/DashboardClient';
 
-export const metadata: Metadata = {
-  title: 'QuaScan | Quantum-Resistant Blockchain Explorer',
-  description: 'Real-time blockchain explorer for the Quanta network.',
-};
+
 
 export const revalidate = 10;
 
